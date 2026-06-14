@@ -1,0 +1,28 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name fsmaster.com www.fsmaster.com;
+
+    root /var/www/fsmaster;
+    index index.html;
+
+    # Redirect www -> apex (certbot will move this to the 443 block too)
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    # Long cache for static assets
+    location ~* \.(?:jpg|jpeg|png|gif|webp|svg|ico|css|js|woff2?)$ {
+        expires 30d;
+        add_header Cache-Control "public, immutable";
+    }
+
+    # Basic security headers
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+
+    gzip on;
+    gzip_types text/css application/javascript image/svg+xml application/json;
+    gzip_min_length 1024;
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Igor Marchuk — AIOps & L3 Cloud Support Engineer",
+  "short_name": "Igor Marchuk",
+  "description": "Senior AIOps / L3 Cloud Support Engineer · San Jose, California",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#05070d",
+  "background_color": "#05070d",
+  "display": "standalone",
+  "start_url": "/"
+}

@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>Igor Marchuk — AIOps & L3 Cloud Support Engineer | San Jose, CA</title>
+  <meta name="description" content="Igor Marchuk — Senior AIOps / L3 Cloud Support Engineer based in San Jose, California. 12+ years delivering enterprise-grade technical support, GCP architecture, and AI platform operations." />
+  <meta name="author" content="Igor Marchuk" />
+  <meta name="keywords" content="Igor Marchuk, AIOps, L3 Cloud Support, Google Cloud Architect, GCP, San Jose, Site Reliability, Enterprise AI Support" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Igor Marchuk — AIOps & L3 Cloud Support Engineer" />
+  <meta property="og:description" content="12+ years delivering enterprise-grade technical support and AI platform operations." />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+  <link rel="manifest" href="assets/site.webmanifest" />
+  <meta name="theme-color" content="#05070d" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Space Grotesk"', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            ink: '#05070d',
+            panel: '#0b0f1a',
+            cyan: '#22d3ee',
+            azure: '#3b82f6',
+            violet: '#8b5cf6',
+          },
+          keyframes: {
+            floaty: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-12px)' } },
+            shimmer: { '0%': { backgroundPosition: '0% 50%' }, '50%': { backgroundPosition: '100% 50%' }, '100%': { backgroundPosition: '0% 50%' } },
+          },
+          animation: {
+            floaty: 'floaty 6s ease-in-out infinite',
+            shimmer: 'shimmer 8s ease infinite',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root { color-scheme: dark; }
+    html, body { background: #05070d; }
+    body { font-family: 'Inter', sans-serif; }
+
+    /* Animated gradient mesh layer */
+    .mesh {
+      background:
+        radial-gradient(40rem 40rem at 12% 8%, rgba(59,130,246,0.18), transparent 60%),
+        radial-gradient(36rem 36rem at 88% 14%, rgba(139,92,246,0.16), transparent 60%),
+        radial-gradient(48rem 48rem at 50% 105%, rgba(34,211,238,0.14), transparent 60%);
+    }
+
+    .gradient-text {
+      background: linear-gradient(110deg, #22d3ee, #3b82f6 40%, #8b5cf6 80%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .glass:hover { border-color: rgba(34,211,238,0.35); }
+
+    .glow-ring {
+      box-shadow: 0 0 0 1px rgba(34,211,238,0.25), 0 0 60px -10px rgba(59,130,246,0.55), 0 0 120px -30px rgba(139,92,246,0.5);
+    }
+
+    .btn-primary {
+      background: linear-gradient(110deg, #22d3ee, #3b82f6 50%, #8b5cf6);
+      background-size: 200% auto;
+      transition: background-position .5s ease, transform .25s ease, box-shadow .25s ease;
+      box-shadow: 0 10px 40px -12px rgba(59,130,246,0.6);
+    }
+    .btn-primary:hover { background-position: right center; transform: translateY(-2px); box-shadow: 0 16px 50px -12px rgba(139,92,246,0.7); }
+
+    .btn-ghost { transition: all .25s ease; }
+    .btn-ghost:hover { border-color: rgba(34,211,238,0.5); background: rgba(34,211,238,0.06); transform: translateY(-2px); }
+
+    /* Reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    .chip { border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); transition: all .2s ease; }
+    .chip:hover { border-color: rgba(34,211,238,0.45); color: #fff; transform: translateY(-1px); }
+
+    canvas#particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    ::selection { background: rgba(34,211,238,0.3); }
+
+    /* Subtle scrollbar */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #05070d; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(#3b82f6,#8b5cf6); border-radius: 99px; }
+  </style>
+</head>
+
+<body class="text-slate-300 antialiased overflow-x-hidden">
+
+  <!-- Background layers -->
+  <div class="fixed inset-0 mesh animate-shimmer" style="z-index:0;"></div>
+  <canvas id="particles"></canvas>
+  <div class="fixed inset-0 pointer-events-none" style="z-index:0; background:radial-gradient(120% 80% at 50% 0%, transparent 40%, rgba(5,7,13,0.85) 100%);"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="fixed top-0 inset-x-0 z-50">
+    <div class="mx-auto max-w-6xl px-6">
+      <nav class="mt-4 glass rounded-2xl px-5 py-3 flex items-center justify-between">
+        <a href="#hero" class="font-display font-semibold tracking-tight text-white text-lg flex items-center gap-2">
+          <span class="inline-block h-2.5 w-2.5 rounded-full bg-cyan animate-floaty"></span>
+          Igor<span class="text-slate-500">Marchuk</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+          <a href="#about" class="hover:text-white transition">About</a>
+          <a href="#expertise" class="hover:text-white transition">Expertise</a>
+          <a href="#certifications" class="hover:text-white transition">Certifications</a>
+          <a href="#experience" class="hover:text-white transition">Experience</a>
+          <a href="#projects" class="hover:text-white transition">Projects</a>
+          <a href="#contact" class="hover:text-white transition">Contact</a>
+        </div>
+        <a href="#contact" class="hidden sm:inline-flex btn-primary text-white text-sm font-semibold px-4 py-2 rounded-xl">Let's talk</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="relative" style="z-index:10;">
+
+    <!-- ============ HERO ============ -->
+    <section id="hero" class="min-h-screen flex items-center pt-32 pb-20 px-6">
+      <div class="mx-auto max-w-6xl w-full grid md:grid-cols-12 gap-12 items-center">
+
+        <div class="md:col-span-7 reveal">
+          <div class="inline-flex items-center gap-2 text-xs font-medium text-cyan/90 chip rounded-full px-3 py-1 mb-6">
+            <i data-lucide="map-pin" class="h-3.5 w-3.5"></i> San Jose, California · Open to senior roles
+          </div>
+
+          <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.05]">
+            Igor <span class="gradient-text animate-shimmer">Marchuk</span>
+          </h1>
+
+          <p class="mt-5 text-lg sm:text-xl font-medium text-slate-200/90 font-display">
+            AIOps Support Engineer · L3 Cloud Support · Google Cloud Architect
+          </p>
+
+          <p class="mt-4 max-w-xl text-base sm:text-lg text-slate-400 leading-relaxed">
+            12+ years delivering enterprise-grade technical support and AI platform operations —
+            keeping mission-critical cloud and AI systems reliable, secure, and fast.
+          </p>
+
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <a href="assets/igor_marchuk_cv.pdf" download="Igor_Marchuk_CV.pdf" class="btn-primary inline-flex items-center gap-2 text-white font-semibold px-6 py-3.5 rounded-xl">
+              <i data-lucide="download" class="h-5 w-5"></i> Download CV
+            </a>
+            <a href="#contact" class="btn-ghost inline-flex items-center gap-2 text-white font-semibold px-6 py-3.5 rounded-xl border border-white/15">
+              <i data-lucide="send" class="h-5 w-5"></i> Get in Touch
+            </a>
+          </div>
+
+          <div class="mt-10 flex items-center gap-7 text-slate-500">
+            <a href="https://www.linkedin.com/in/igormarchuk" target="_blank" rel="noopener" class="hover:text-cyan transition flex items-center gap-2 text-sm">
+              <i data-lucide="linkedin" class="h-5 w-5"></i> LinkedIn
+            </a>
+            <a href="mailto:igor@fsmaster.com" class="hover:text-cyan transition flex items-center gap-2 text-sm">
+              <i data-lucide="mail" class="h-5 w-5"></i> igor@fsmaster.com
+            </a>
+          </div>
+        </div>
+
+        <!-- Photo -->
+        <div class="md:col-span-5 flex justify-center md:justify-end reveal">
+          <div class="relative animate-floaty">
+            <div class="absolute -inset-6 rounded-[2rem] bg-gradient-to-tr from-cyan/30 via-azure/20 to-violet/30 blur-2xl"></div>
+            <div class="relative h-64 w-64 sm:h-80 sm:w-80 rounded-[2rem] overflow-hidden glow-ring glass">
+              <img id="photo" alt="Igor Marchuk — AIOps & L3 Cloud Support Engineer" class="h-full w-full object-cover"
+                   src="assets/igor-hero.jpg" />
+            </div>
+            <div class="absolute -bottom-4 -left-4 glass rounded-2xl px-4 py-3 flex items-center gap-3">
+              <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-400"></span>
+              </span>
+              <div class="text-xs leading-tight">
+                <div class="text-white font-semibold">Available</div>
+                <div class="text-slate-500">for new opportunities</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATS STRIP ============ -->
+    <section class="px-6 -mt-6 mb-12">
+      <div class="mx-auto max-w-6xl grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="glass rounded-2xl p-5 text-center reveal">
+          <div class="font-display text-3xl font-bold text-white">12+</div>
+          <div class="text-xs text-slate-500 mt-1">Years in tech support</div>
+        </div>
+        <div class="glass rounded-2xl p-5 text-center reveal">
+          <div class="font-display text-3xl font-bold text-white">L3</div>
+          <div class="text-xs text-slate-500 mt-1">Highest-tier escalations</div>
+        </div>
+        <div class="glass rounded-2xl p-5 text-center reveal">
+          <div class="font-display text-3xl font-bold gradient-text">GCP</div>
+          <div class="text-xs text-slate-500 mt-1">Pro Cloud Architect</div>
+        </div>
+        <div class="glass rounded-2xl p-5 text-center reveal">
+          <div class="font-display text-3xl font-bold gradient-text">5×</div>
+          <div class="text-xs text-slate-500 mt-1">Google certifications</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about" class="px-6 py-20">
+      <div class="mx-auto max-w-4xl text-center reveal">
+        <p class="text-cyan text-sm font-semibold tracking-widest uppercase mb-3">About</p>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Professional Summary</h2>
+        <p class="mt-6 text-lg text-slate-400 leading-relaxed">
+          I lead <span class="text-slate-200 font-medium">Level-3 technical support</span> for enterprise cloud and AI platforms,
+          where the hardest escalations land. My background spans
+          <span class="text-slate-200 font-medium">Google Cloud architecture</span>,
+          high-stakes <span class="text-slate-200 font-medium">financial services</span> environments at Barclays Capital,
+          and the operations behind modern <span class="text-slate-200 font-medium">AI services</span> like Gemini, ChatGPT, and Claude.
+        </p>
+        <p class="mt-4 text-lg text-slate-400 leading-relaxed">
+          I'm the person teams call when an incident is ambiguous, time-sensitive, and visible to stakeholders.
+          I pair deep GCP and identity/security expertise with calm, precise communication — turning chaotic
+          outages into clear root-cause stories and lasting fixes.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ EXPERTISE ============ -->
+    <section id="expertise" class="px-6 py-20">
+      <div class="mx-auto max-w-6xl">
+        <div class="text-center mb-14 reveal">
+          <p class="text-cyan text-sm font-semibold tracking-widest uppercase mb-3">Core Expertise</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">What I bring to the table</h2>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          <div class="glass rounded-3xl p-7 reveal transition-transform hover:-translate-y-1">
+            <div class="h-12 w-12 rounded-2xl grid place-items-center bg-gradient-to-br from-cyan/20 to-azure/10 text-cyan mb-5">
+              <i data-lucide="cloud" class="h-6 w-6"></i>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-white">Cloud & AIOps</h3>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
+              <span class="chip rounded-full px-3 py-1">GCP — Professional Cloud Architect</span>
+              <span class="chip rounded-full px-3 py-1">Kubernetes / GKE</span>
+              <span class="chip rounded-full px-3 py-1">Cloud Logging & Operations</span>
+              <span class="chip rounded-full px-3 py-1">Cloud IAM</span>
+              <span class="chip rounded-full px-3 py-1">Azure (fundamentals)</span>
+              <span class="chip rounded-full px-3 py-1">GCP Troubleshooting</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl p-7 reveal transition-transform hover:-translate-y-1">
+            <div class="h-12 w-12 rounded-2xl grid place-items-center bg-gradient-to-br from-violet/20 to-cyan/10 text-violet mb-5">
+              <i data-lucide="sparkles" class="h-6 w-6"></i>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-white">AI, LLM & Agents</h3>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
+              <span class="chip rounded-full px-3 py-1">Google Gemini Enterprise</span>
+              <span class="chip rounded-full px-3 py-1">Anthropic Claude & Claude Code</span>
+              <span class="chip rounded-full px-3 py-1">Agent Development Kit (ADK)</span>
+              <span class="chip rounded-full px-3 py-1">Gemini CLI</span>
+              <span class="chip rounded-full px-3 py-1">Model Armor</span>
+              <span class="chip rounded-full px-3 py-1">Prompt engineering</span>
+              <span class="chip rounded-full px-3 py-1">RAG / MCP-aware</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl p-7 reveal transition-transform hover:-translate-y-1">
+            <div class="h-12 w-12 rounded-2xl grid place-items-center bg-gradient-to-br from-violet/20 to-azure/10 text-violet mb-5">
+              <i data-lucide="shield-check" class="h-6 w-6"></i>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-white">Identity & Security</h3>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
+              <span class="chip rounded-full px-3 py-1">SSO — SAML 2.0 / OIDC / OAuth 2.0</span>
+              <span class="chip rounded-full px-3 py-1">Okta</span>
+              <span class="chip rounded-full px-3 py-1">Entra ID (Azure AD)</span>
+              <span class="chip rounded-full px-3 py-1">Google Workspace</span>
+              <span class="chip rounded-full px-3 py-1">SSL/TLS Inspection</span>
+              <span class="chip rounded-full px-3 py-1">Certificate / PKI</span>
+              <span class="chip rounded-full px-3 py-1">802.1x</span>
+              <span class="chip rounded-full px-3 py-1">Google DLP</span>
+              <span class="chip rounded-full px-3 py-1">SCIM / JIT provisioning</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl p-7 reveal transition-transform hover:-translate-y-1">
+            <div class="h-12 w-12 rounded-2xl grid place-items-center bg-gradient-to-br from-emerald-400/20 to-cyan/10 text-emerald-300 mb-5">
+              <i data-lucide="headset" class="h-6 w-6"></i>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-white">Support & Operations</h3>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
+              <span class="chip rounded-full px-3 py-1">L3 Escalation</span>
+              <span class="chip rounded-full px-3 py-1">Incident Management</span>
+              <span class="chip rounded-full px-3 py-1">Root-Cause Analysis</span>
+              <span class="chip rounded-full px-3 py-1">On-call / SRE</span>
+              <span class="chip rounded-full px-3 py-1">Runbooks</span>
+              <span class="chip rounded-full px-3 py-1">Stakeholder Comms</span>
+              <span class="chip rounded-full px-3 py-1">ServiceNow</span>
+              <span class="chip rounded-full px-3 py-1">Jira</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl p-7 reveal transition-transform hover:-translate-y-1">
+            <div class="h-12 w-12 rounded-2xl grid place-items-center bg-gradient-to-br from-azure/20 to-violet/10 text-azure mb-5">
+              <i data-lucide="terminal" class="h-6 w-6"></i>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-white">Automation & IaC</h3>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
+              <span class="chip rounded-full px-3 py-1">Python</span>
+              <span class="chip rounded-full px-3 py-1">Bash</span>
+              <span class="chip rounded-full px-3 py-1">PowerShell</span>
+              <span class="chip rounded-full px-3 py-1">Terraform</span>
+              <span class="chip rounded-full px-3 py-1">Ansible</span>
+              <span class="chip rounded-full px-3 py-1">Puppet</span>
+              <span class="chip rounded-full px-3 py-1">GitHub Actions / CI-CD</span>
+              <span class="chip rounded-full px-3 py-1">C++</span>
+              <span class="chip rounded-full px-3 py-1">TypeScript</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl p-7 reveal transition-transform hover:-translate-y-1">
+            <div class="h-12 w-12 rounded-2xl grid place-items-center bg-gradient-to-br from-cyan/20 to-emerald-400/10 text-cyan mb-5">
+              <i data-lucide="server" class="h-6 w-6"></i>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-white">Platforms & Tooling</h3>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
+              <span class="chip rounded-full px-3 py-1">Linux / Unix (expert)</span>
+              <span class="chip rounded-full px-3 py-1">Windows</span>
+              <span class="chip rounded-full px-3 py-1">macOS</span>
+              <span class="chip rounded-full px-3 py-1">ChromeOS</span>
+              <span class="chip rounded-full px-3 py-1">Docker / Kubernetes</span>
+              <span class="chip rounded-full px-3 py-1">Jamf / Intune / Google MDM</span>
+              <span class="chip rounded-full px-3 py-1">Zabbix</span>
+              <span class="chip rounded-full px-3 py-1">Wireshark</span>
+              <span class="chip rounded-full px-3 py-1">Splunk-class observability</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl p-7 reveal transition-transform hover:-translate-y-1 lg:col-span-3">
+            <div class="h-12 w-12 rounded-2xl grid place-items-center bg-gradient-to-br from-cyan/20 to-violet/20 text-cyan mb-5">
+              <i data-lucide="layers" class="h-6 w-6"></i>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-white">Domains</h3>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
+              <span class="chip rounded-full px-3 py-1">Financial Services</span>
+              <span class="chip rounded-full px-3 py-1">Enterprise AI Platforms</span>
+              <span class="chip rounded-full px-3 py-1">Gemini</span>
+              <span class="chip rounded-full px-3 py-1">ChatGPT</span>
+              <span class="chip rounded-full px-3 py-1">Claude</span>
+              <span class="chip rounded-full px-3 py-1">Zero Trust</span>
+              <span class="chip rounded-full px-3 py-1">SOC 2 / ISO 27001</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CERTIFICATIONS ============ -->
+    <section id="certifications" class="px-6 py-20">
+      <div class="mx-auto max-w-6xl">
+        <div class="text-center mb-14 reveal">
+          <p class="text-cyan text-sm font-semibold tracking-widest uppercase mb-3">Certifications</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Credentials & continuous learning</h2>
+          <p class="mt-4 text-slate-400 max-w-xl mx-auto">Google Cloud certified, with a 2026 focus on enterprise AI, agents, and the Gemini platform.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          <!-- Featured: PCA -->
+          <div class="glass rounded-3xl p-7 reveal transition-transform hover:-translate-y-1 sm:col-span-2 lg:col-span-3 flex flex-col sm:flex-row sm:items-center gap-5">
+            <div class="h-14 w-14 shrink-0 rounded-2xl grid place-items-center bg-gradient-to-br from-cyan/25 to-violet/20 text-cyan">
+              <i data-lucide="award" class="h-7 w-7"></i>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-display text-xl font-semibold text-white">Google Professional Cloud Architect</h3>
+              <p class="text-sm text-slate-400 mt-1">Google Cloud · Professional-level certification</p>
+            </div>
+            <span class="self-start sm:self-center text-xs font-medium text-cyan chip rounded-full px-3 py-1">2018</span>
+          </div>
+
+          <!-- 2026 Google AI / Agent certifications -->
+          <div class="glass rounded-3xl p-6 reveal transition-transform hover:-translate-y-1 flex flex-col">
+            <div class="flex items-start justify-between">
+              <div class="h-11 w-11 rounded-2xl grid place-items-center bg-gradient-to-br from-violet/20 to-cyan/10 text-violet">
+                <i data-lucide="bot" class="h-5 w-5"></i>
+              </div>
+              <span class="text-xs font-medium text-emerald-300 chip rounded-full px-3 py-1">New · 2026</span>
+            </div>
+            <h3 class="font-display text-base font-semibold text-white mt-4 leading-snug">Deploy an Agent with Agent Development Kit (ADK)</h3>
+            <p class="text-sm text-slate-500 mt-auto pt-3">Google</p>
+          </div>
+
+          <div class="glass rounded-3xl p-6 reveal transition-transform hover:-translate-y-1 flex flex-col">
+            <div class="flex items-start justify-between">
+              <div class="h-11 w-11 rounded-2xl grid place-items-center bg-gradient-to-br from-cyan/20 to-violet/10 text-cyan">
+                <i data-lucide="workflow" class="h-5 w-5"></i>
+              </div>
+              <span class="text-xs font-medium text-emerald-300 chip rounded-full px-3 py-1">New · 2026</span>
+            </div>
+            <h3 class="font-display text-base font-semibold text-white mt-4 leading-snug">Add Agents to Gemini Enterprise</h3>
+            <p class="text-sm text-slate-500 mt-auto pt-3">Google</p>
+          </div>
+
+          <div class="glass rounded-3xl p-6 reveal transition-transform hover:-translate-y-1 flex flex-col">
+            <div class="flex items-start justify-between">
+              <div class="h-11 w-11 rounded-2xl grid place-items-center bg-gradient-to-br from-emerald-400/20 to-cyan/10 text-emerald-300">
+                <i data-lucide="shield" class="h-5 w-5"></i>
+              </div>
+              <span class="text-xs font-medium text-emerald-300 chip rounded-full px-3 py-1">New · 2026</span>
+            </div>
+            <h3 class="font-display text-base font-semibold text-white mt-4 leading-snug">Deploy Gemini Enterprise with Workspace Data Sources & Model Armor</h3>
+            <p class="text-sm text-slate-500 mt-auto pt-3">Google</p>
+          </div>
+
+          <div class="glass rounded-3xl p-6 reveal transition-transform hover:-translate-y-1 flex flex-col lg:col-start-2">
+            <div class="flex items-start justify-between">
+              <div class="h-11 w-11 rounded-2xl grid place-items-center bg-gradient-to-br from-azure/20 to-violet/10 text-azure">
+                <i data-lucide="terminal-square" class="h-5 w-5"></i>
+              </div>
+              <span class="text-xs font-medium text-emerald-300 chip rounded-full px-3 py-1">New · 2026</span>
+            </div>
+            <h3 class="font-display text-base font-semibold text-white mt-4 leading-snug">Streamline Application Development with Gemini CLI</h3>
+            <p class="text-sm text-slate-500 mt-auto pt-3">Google</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section id="experience" class="px-6 py-20">
+      <div class="mx-auto max-w-4xl">
+        <div class="text-center mb-14 reveal">
+          <p class="text-cyan text-sm font-semibold tracking-widest uppercase mb-3">Experience</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Where I've made an impact</h2>
+        </div>
+
+        <div class="relative pl-8 sm:pl-10">
+          <div class="absolute left-2.5 sm:left-3 top-2 bottom-2 w-px bg-gradient-to-b from-cyan via-azure to-violet/40"></div>
+
+          <!-- Current -->
+          <div class="relative mb-10 reveal">
+            <span class="absolute -left-[1.45rem] sm:-left-[1.7rem] top-1.5 h-3.5 w-3.5 rounded-full bg-cyan glow-ring"></span>
+            <div class="glass rounded-3xl p-6">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <h3 class="font-display text-lg font-semibold text-white">Lead Application Support Engineer</h3>
+                <span class="text-xs font-medium text-cyan chip rounded-full px-3 py-1">Current</span>
+              </div>
+              <p class="text-sm text-slate-400 mt-1">Google Client · EPAM Systems</p>
+              <p class="text-sm text-slate-400 mt-3 leading-relaxed">
+                Owning L3 escalations for Google's enterprise AI and cloud services — driving incident triage,
+                root-cause analysis, and cross-team resolution for the highest-severity, most ambiguous issues.
+              </p>
+            </div>
+          </div>
+
+          <!-- Barclays -->
+          <div class="relative mb-10 reveal">
+            <span class="absolute -left-[1.45rem] sm:-left-[1.7rem] top-1.5 h-3.5 w-3.5 rounded-full bg-azure"></span>
+            <div class="glass rounded-3xl p-6">
+              <h3 class="font-display text-lg font-semibold text-white">Technical Support Engineer</h3>
+              <p class="text-sm text-slate-400 mt-1">Barclays Capital · Financial Services</p>
+              <p class="text-sm text-slate-400 mt-3 leading-relaxed">
+                Supported mission-critical trading and banking platforms in a regulated, zero-downtime environment —
+                building the rigor and stakeholder discipline that defines high-stakes enterprise support.
+              </p>
+            </div>
+          </div>
+
+          <!-- Bilink -->
+          <div class="relative reveal">
+            <span class="absolute -left-[1.45rem] sm:-left-[1.7rem] top-1.5 h-3.5 w-3.5 rounded-full bg-violet"></span>
+            <div class="glass rounded-3xl p-6">
+              <h3 class="font-display text-lg font-semibold text-white">Network & Systems Engineer</h3>
+              <p class="text-sm text-slate-400 mt-1">Bilink ISP</p>
+              <p class="text-sm text-slate-400 mt-3 leading-relaxed">
+                Built the networking, Linux, and infrastructure foundations — managing connectivity, systems,
+                and customer-facing operations end to end.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section id="projects" class="px-6 py-20">
+      <div class="mx-auto max-w-6xl">
+        <div class="text-center mb-14 reveal">
+          <p class="text-cyan text-sm font-semibold tracking-widest uppercase mb-3">Personal Projects</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Things I build for fun</h2>
+          <p class="mt-4 text-slate-400 max-w-xl mx-auto">Self-hosted, from-scratch engineering — security tooling, platform internals, and full-stack products.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-5">
+
+          <!-- Sova (featured) -->
+          <div class="glass rounded-3xl p-7 reveal transition-transform hover:-translate-y-1 flex flex-col md:col-span-2">
+            <div class="flex items-start justify-between">
+              <div class="h-12 w-12 rounded-2xl grid place-items-center bg-gradient-to-br from-rose-400/20 to-violet/10 text-rose-300">
+                <i data-lucide="heart-handshake" class="h-6 w-6"></i>
+              </div>
+              <span class="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-300 chip rounded-full px-3 py-1">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span> Live
+              </span>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-white mt-5">Sova — Live Emotional-Support Video Chat</h3>
+            <a href="https://sovatalk.com" target="_blank" rel="noopener" class="text-sm text-cyan hover:underline">sovatalk.com</a>
+            <p class="mt-3 text-sm text-slate-400 leading-relaxed flex-1">
+              A production platform for anonymous, on-demand live video chat and private 1-on-1 sessions with empathetic listeners,
+              with cryptocurrency (Bitcoin / Lightning) payments. Beyond the product, it is a complete cloud-native DevOps
+              implementation — <span class="text-slate-200">full CI/CD · GitOps · DevOps across multi-node Dev / UAT / Production environments</span>.
+              A Dockerised Next.js application plus background workers run on Kubernetes (k3s) across three separate environments;
+              Argo CD continuously reconciles each from Git (app-of-apps, Sealed Secrets, CloudNativePG); GitHub Actions drives automated
+              SemVer releases, container image builds to GHCR, vulnerability scanning, automatic UAT deployment, and gated promotion to
+              Production; Terraform and Ansible provision and configure the infrastructure. Real-time media runs on LiveKit (WebRTC)
+              behind host nginx + Let's Encrypt, with BTCPay Server for payments.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
+              <span class="chip rounded-full px-3 py-1">Next.js</span>
+              <span class="chip rounded-full px-3 py-1">TypeScript</span>
+              <span class="chip rounded-full px-3 py-1">Docker / GHCR</span>
+              <span class="chip rounded-full px-3 py-1">Kubernetes (k3s)</span>
+              <span class="chip rounded-full px-3 py-1">Argo CD</span>
+              <span class="chip rounded-full px-3 py-1">Terraform</span>
+              <span class="chip rounded-full px-3 py-1">Ansible</span>
+              <span class="chip rounded-full px-3 py-1">GitHub Actions</span>
+              <span class="chip rounded-full px-3 py-1">LiveKit WebRTC</span>
+              <span class="chip rounded-full px-3 py-1">PostgreSQL (CNPG)</span>
+              <span class="chip rounded-full px-3 py-1">Sealed Secrets</span>
+              <span class="chip rounded-full px-3 py-1">BTCPay</span>
+            </div>
+            <div class="mt-6 flex items-center gap-3">
+              <a href="https://sovatalk.com" target="_blank" rel="noopener" class="btn-ghost inline-flex items-center gap-2 text-white text-sm font-medium px-4 py-2 rounded-xl border border-white/15">
+                <i data-lucide="external-link" class="h-4 w-4"></i> Visit
+              </a>
+              <span class="inline-flex items-center gap-2 text-slate-500 text-sm font-medium px-4 py-2 rounded-xl border border-white/10 cursor-default select-none">
+                <i data-lucide="lock" class="h-4 w-4"></i> Private repo
+              </span>
+            </div>
+          </div>
+
+          <!-- SSO IdP -->
+          <div class="glass rounded-3xl p-7 reveal transition-transform hover:-translate-y-1 flex flex-col">
+            <div class="flex items-start justify-between">
+              <div class="h-12 w-12 rounded-2xl grid place-items-center bg-gradient-to-br from-violet/20 to-azure/10 text-violet">
+                <i data-lucide="key-round" class="h-6 w-6"></i>
+              </div>
+              <span class="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-300 chip rounded-full px-3 py-1">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span> Live
+              </span>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-white mt-5">SAML&nbsp;+&nbsp;OIDC SSO Identity Provider</h3>
+            <a href="https://sso.fsmaster.com" target="_blank" rel="noopener" class="text-sm text-cyan hover:underline">sso.fsmaster.com</a>
+            <p class="mt-3 text-sm text-slate-400 leading-relaxed flex-1">
+              A complete SAML 2.0 + OpenID Connect Identity Provider written in <span class="text-slate-200">pure Python — with no SAML/OIDC libraries</span>.
+              Hand-rolled XML signing, assertions, and token flows to drive single sign-on for Google Workspace.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
+              <span class="chip rounded-full px-3 py-1">Python</span>
+              <span class="chip rounded-full px-3 py-1">SAML 2.0</span>
+              <span class="chip rounded-full px-3 py-1">OIDC</span>
+              <span class="chip rounded-full px-3 py-1">Zero dependencies</span>
+            </div>
+            <div class="mt-6 flex items-center gap-3">
+              <a href="https://sso.fsmaster.com" target="_blank" rel="noopener" class="btn-ghost inline-flex items-center gap-2 text-white text-sm font-medium px-4 py-2 rounded-xl border border-white/15">
+                <i data-lucide="external-link" class="h-4 w-4"></i> Visit
+              </a>
+              <a href="https://github.com/fsmaster/fsmaster-sso" target="_blank" rel="noopener" class="btn-ghost inline-flex items-center gap-2 text-white text-sm font-medium px-4 py-2 rounded-xl border border-white/15">
+                <i data-lucide="github" class="h-4 w-4"></i> Source
+              </a>
+            </div>
+          </div>
+
+          <!-- IP logger / scerenshot.app -->
+          <div class="glass rounded-3xl p-7 reveal transition-transform hover:-translate-y-1 flex flex-col">
+            <div class="flex items-start justify-between">
+              <div class="h-12 w-12 rounded-2xl grid place-items-center bg-gradient-to-br from-cyan/20 to-violet/10 text-cyan">
+                <i data-lucide="radar" class="h-6 w-6"></i>
+              </div>
+              <span class="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-300 chip rounded-full px-3 py-1">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span> Live
+              </span>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-white mt-5">track — URL &amp; Screenshot IP Logger</h3>
+            <a href="https://scerenshot.app" target="_blank" rel="noopener" class="text-sm text-cyan hover:underline">scerenshot.app</a>
+            <p class="mt-3 text-sm text-slate-400 leading-relaxed flex-1">
+              Grabify-style short links that capture each visitor's <span class="text-slate-200">IP, geolocation (country / region / city on a live map)</span>,
+              and device details. Supports URL redirects and image serving, with a built-in analytics dashboard.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
+              <span class="chip rounded-full px-3 py-1">Node.js</span>
+              <span class="chip rounded-full px-3 py-1">Express</span>
+              <span class="chip rounded-full px-3 py-1">SQLite</span>
+              <span class="chip rounded-full px-3 py-1">Leaflet / Geo-IP</span>
+            </div>
+            <div class="mt-6 flex items-center gap-3">
+              <a href="https://scerenshot.app" target="_blank" rel="noopener" class="btn-ghost inline-flex items-center gap-2 text-white text-sm font-medium px-4 py-2 rounded-xl border border-white/15">
+                <i data-lucide="external-link" class="h-4 w-4"></i> Visit
+              </a>
+              <a href="https://github.com/fsmaster/screenshot-app-ip-logger" target="_blank" rel="noopener" class="btn-ghost inline-flex items-center gap-2 text-white text-sm font-medium px-4 py-2 rounded-xl border border-white/15">
+                <i data-lucide="github" class="h-4 w-4"></i> Source
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="px-6 py-24">
+      <div class="mx-auto max-w-5xl reveal">
+        <div class="glass rounded-[2.5rem] p-8 sm:p-12 relative overflow-hidden">
+          <div class="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-violet/20 blur-3xl"></div>
+          <div class="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-cyan/20 blur-3xl"></div>
+
+          <div class="relative text-center">
+            <p class="text-cyan text-sm font-semibold tracking-widest uppercase mb-3">Contact</p>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Let's build something reliable</h2>
+            <p class="mt-4 text-slate-400 max-w-xl mx-auto">
+              Available for senior AIOps and L3 cloud support roles. The fastest way to reach me is email or LinkedIn.
+            </p>
+          </div>
+
+          <div class="relative mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <a href="mailto:igor@fsmaster.com" class="glass rounded-2xl p-5 flex items-center gap-4 hover:-translate-y-1 transition">
+              <div class="h-11 w-11 rounded-xl grid place-items-center bg-cyan/15 text-cyan"><i data-lucide="mail" class="h-5 w-5"></i></div>
+              <div class="min-w-0">
+                <div class="text-xs text-slate-500">Email</div>
+                <div class="text-sm text-white font-medium truncate">igor@fsmaster.com</div>
+              </div>
+            </a>
+            <a href="tel:+16504958481" class="glass rounded-2xl p-5 flex items-center gap-4 hover:-translate-y-1 transition">
+              <div class="h-11 w-11 rounded-xl grid place-items-center bg-azure/15 text-azure"><i data-lucide="phone" class="h-5 w-5"></i></div>
+              <div class="min-w-0">
+                <div class="text-xs text-slate-500">Phone</div>
+                <div class="text-sm text-white font-medium">(650) 495-8481</div>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/in/igormarchuk" target="_blank" rel="noopener" class="glass rounded-2xl p-5 flex items-center gap-4 hover:-translate-y-1 transition">
+              <div class="h-11 w-11 rounded-xl grid place-items-center bg-violet/15 text-violet"><i data-lucide="linkedin" class="h-5 w-5"></i></div>
+              <div class="min-w-0">
+                <div class="text-xs text-slate-500">LinkedIn</div>
+                <div class="text-sm text-white font-medium truncate">in/igormarchuk</div>
+              </div>
+            </a>
+            <div class="glass rounded-2xl p-5 flex items-center gap-4">
+              <div class="h-11 w-11 rounded-xl grid place-items-center bg-emerald-400/15 text-emerald-300"><i data-lucide="map-pin" class="h-5 w-5"></i></div>
+              <div class="min-w-0">
+                <div class="text-xs text-slate-500">Location</div>
+                <div class="text-sm text-white font-medium">San Jose, CA</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative mt-10 text-center">
+            <a href="https://t.me/fsmaster" target="_blank" rel="noopener" class="btn-primary inline-flex items-center gap-2 text-white font-semibold px-7 py-3.5 rounded-xl">
+              <i data-lucide="send" class="h-5 w-5"></i> Send a message on Telegram
+            </a>
+            <p class="mt-3 text-xs text-slate-500">Telegram: <span class="text-cyan">@fsmaster</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="px-6 py-10 border-t border-white/5">
+      <div class="mx-auto max-w-6xl flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+        <div class="font-display text-white">Igor <span class="text-slate-500">Marchuk</span></div>
+        <div>© <span id="year"></span> Igor Marchuk · San Jose, California</div>
+        <div class="flex items-center gap-5">
+          <a href="mailto:igor@fsmaster.com" class="hover:text-cyan transition"><i data-lucide="mail" class="h-4 w-4"></i></a>
+          <a href="https://www.linkedin.com/in/igormarchuk" target="_blank" rel="noopener" class="hover:text-cyan transition"><i data-lucide="linkedin" class="h-4 w-4"></i></a>
+          <a href="tel:+16504958481" class="hover:text-cyan transition"><i data-lucide="phone" class="h-4 w-4"></i></a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* Scroll reveal */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) { setTimeout(() => e.target.classList.add('in'), (i % 4) * 80); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    /* Lightweight particle network background */
+    (function () {
+      const canvas = document.getElementById('particles');
+      const ctx = canvas.getContext('2d');
+      let w, h, dpr, particles = [];
+      const COUNT = Math.min(70, Math.floor((window.innerWidth * window.innerHeight) / 22000));
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = canvas.width = innerWidth * dpr;
+        h = canvas.height = innerHeight * dpr;
+        canvas.style.width = innerWidth + 'px';
+        canvas.style.height = innerHeight + 'px';
+      }
+      function seed() {
+        particles = Array.from({ length: COUNT }, () => ({
+          x: Math.random() * w, y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.25 * dpr,
+          vy: (Math.random() - 0.5) * 0.25 * dpr,
+          r: (Math.random() * 1.6 + 0.6) * dpr,
+        }));
+      }
+      function step() {
+        ctx.clearRect(0, 0, w, h);
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > w) p.vx *= -1;
+          if (p.y < 0 || p.y > h) p.vy *= -1;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(34,211,238,0.6)';
+          ctx.fill();
+          for (let j = i + 1; j < particles.length; j++) {
+            const q = particles[j];
+            const dx = p.x - q.x, dy = p.y - q.y;
+            const dist = Math.hypot(dx, dy);
+            const max = 130 * dpr;
+            if (dist < max) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+              ctx.strokeStyle = `rgba(99,102,241,${0.16 * (1 - dist / max)})`;
+              ctx.lineWidth = dpr;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(step);
+      }
+      resize(); seed(); step();
+      addEventListener('resize', () => { resize(); seed(); });
+    })();
+  </script>
+</body>
+</html>
