@@ -11,6 +11,9 @@ server {
         try_files $uri $uri/ =404;
     }
 
+    # LeakCheck browser-fingerprint page (deploy/leakcheck.nginx)
+    include snippets/leakcheck.conf;
+
     # Long cache for static assets
     location ~* \.(?:jpg|jpeg|png|gif|webp|svg|ico|css|js|woff2?)$ {
         expires 30d;
