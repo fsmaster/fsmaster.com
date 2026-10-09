@@ -11,7 +11,7 @@ server {
         try_files $uri $uri/ =404;
     }
 
-    # LeakCheck browser-fingerprint page (deploy/leakcheck.nginx)
+    # LeakCheck (github.com/fsmaster/leakcheck, snippet installed by its deploy.sh)
     include snippets/leakcheck.conf;
 
     # Long cache for static assets
