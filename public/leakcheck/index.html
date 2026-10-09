@@ -435,7 +435,7 @@ async function main() {
     if (g.security) put(N, 'Proxy / VPN / Tor (ipwho.is)', JSON.stringify(g.security));
   } else put(N, 'IP geolocation', 'lookup blocked or failed');
   const HDR = { 'protocol': 'HTTP version', 'http2': 'HTTP/2 (h2)', 'http3': 'HTTP/3', 'tls': 'TLS version', 'cipher': 'TLS cipher chosen', 'ciphers': 'TLS ciphers you offer', 'curves': 'TLS curves you offer', 'sni': 'TLS SNI', 'reused': 'TLS session reused' };
-  for (const [k, v] of Object.entries(srv)) { if (k === 'ip' || k === 'port') continue; put(SV, HDR[k] || k, v); }
+  for (const [k, v] of Object.entries(srv)) { if (k === 'ip' || k === 'port') continue; put(SV, HDR[k] || k, k === 'reused' ? (v === 'r' ? 'yes' : 'no') : v); }
 
   // ---------- checks ----------
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -464,7 +464,7 @@ async function main() {
   if (g?.security && (g.security.vpn || g.security.proxy || g.security.tor)) flag('warn', 'Your IP is listed as VPN/proxy/Tor. Some checkouts will block or challenge it.');
 
   // ---------- IDs ----------
-  const stable = {}; for (const s of Object.keys(D)) if (!VOLATILE.has(s)) for (const [k, v] of Object.entries(D[s])) { if (/Visited|Date\.toString|toLocaleString|Window position|Window has focus|Visibility/.test(k)) continue; stable[s + '.' + k] = v; }
+  const stable = {}; for (const s of Object.keys(D)) if (!VOLATILE.has(s)) for (const [k, v] of Object.entries(D[s])) { if (/Visited|Date\.toString|toLocaleString|Window position|Window inner|Window outer|Window has focus|Visibility|Storage quota|Timer resolution|Letterboxing/.test(k)) continue; stable[s + '.' + k] = v; }
   const fpB = await sha(JSON.stringify(stable));
   const devParts = { screen: screen.width + 'x' + screen.height + 'x' + screen.colorDepth, avail: screen.availWidth + 'x' + screen.availHeight, dpr: devicePixelRatio, cores: navigator.hardwareConcurrency, timezone: tz, gpu: gpu || 'n/a', fonts: fontList.join(',') };
   const fpD = await sha(JSON.stringify(devParts));
