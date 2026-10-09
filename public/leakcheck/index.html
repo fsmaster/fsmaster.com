@@ -66,6 +66,7 @@ a{color:var(--accent)}
     <div class="ids">
       <div class="id"><div class="l">Browser fingerprint</div><div class="h" id="fpBrowser">…</div><div class="s">Hash of all stable values below. Same value after a restart or in a private window = trackable.</div></div>
       <div class="id"><div class="l">Device fingerprint (cross-browser)</div><div class="h" id="fpDevice">…</div><div class="s">Screen, CPU, GPU, time zone and fonts only. Same in two browsers = the two can be linked.</div></div>
+      <div class="id"><div class="l">FingerprintJS visitorId (what Sova/Snug store)</div><div class="h" id="fpJs">…</div><div class="s" id="fpJsS">Same open-source library Sova uses. Same ID in two browsers or after a restart = linked.</div></div>
       <div class="id"><div class="l">IP address</div><div class="h" id="sumIp">…</div><div class="s" id="sumGeo"></div></div>
     </div>
     <ul class="flags" id="flags"></ul>
@@ -86,11 +87,12 @@ a{color:var(--accent)}
 
   <footer>
     Nothing is stored. The server only echoes your own request back (<code>/leakcheck/whoami</code>).
-    Your browser looks up IP location at <a href="https://ipwho.is" rel="noopener">ipwho.is</a>, and the WebRTC test contacts Google's public STUN server. No cookies, no analytics.
+    Your browser looks up IP location at <a href="https://ipwho.is" rel="noopener">ipwho.is</a>, and the WebRTC test contacts Google's public STUN server. FingerprintJS (open-source v4) runs locally from this site and sends nothing anywhere. No cookies, no analytics.
     · <a href="/">fsmaster.com</a>
   </footer>
 </div>
 
+<script src="fp.min.js"></script>
 <script>
 (() => {
 'use strict';
@@ -398,6 +400,22 @@ function session() {
   put(S, 'Window has focus', document.hasFocus());
 }
 
+/* ---------- FingerprintJS (same library as Sova) ---------- */
+async function fpjs() {
+  const S = 'FingerprintJS (Sova method)';
+  try {
+    if (!window.FingerprintJS) throw new Error('library blocked');
+    const agent = await FingerprintJS.load({ monitoring: false });
+    const r = await timeout(agent.get(), 8000, null);
+    if (!r) throw new Error('timed out');
+    put(S, 'visitorId', r.visitorId);
+    put(S, 'Confidence', r.confidence.score + (r.confidence.comment ? ' (' + r.confidence.comment + ')' : ''));
+    put(S, 'Library version', r.version);
+    for (const [k, c] of Object.entries(r.components)) put(S, k, c.error ? 'error: ' + (c.error.message || c.error) : c.value);
+    return r;
+  } catch (e) { put(S, 'visitorId', 'failed: ' + e.message); return null; }
+}
+
 /* ---------- render ---------- */
 function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
 function cell(v) {
@@ -408,7 +426,7 @@ function cell(v) {
   return esc(v);
 }
 function render() {
-  const pref = ['Network & IP', 'Server sees', 'Browser & OS', 'Screen & window', 'Locale & time', 'Hardware', 'Graphics', 'Audio & media', 'Fonts', 'Storage & permissions', 'APIs & features', 'Battery & connection', 'Session'];
+  const pref = ['Network & IP', 'Server sees', 'FingerprintJS (Sova method)', 'Browser & OS', 'Screen & window', 'Locale & time', 'Hardware', 'Graphics', 'Audio & media', 'Fonts', 'Storage & permissions', 'APIs & features', 'Battery & connection', 'Session'];
   const secs = [...pref.filter(s => D[s]), ...ORDER.filter(s => !pref.includes(s))];
   document.getElementById('sections').innerHTML = secs.map(s => `<div class="card"><h2>${esc(s)} <small>${VOLATILE.has(s) ? 'changes per visit' : 'stable'}</small></h2><table>${Object.entries(D[s]).map(([k, v]) => `<tr><td class="k">${esc(k)}</td><td class="v">${cell(v)}</td></tr>`).join('')}</table></div>`).join('');
   document.getElementById('flags').innerHTML = flags.map(([l, m]) => `<li class="${l}">${esc(m)}</li>`).join('');
@@ -420,6 +438,7 @@ async function main() {
   screenInfo(); locale(); session();
   const fontList = fonts();
   const [srv, g, rtc] = await Promise.all([server(), geo(), webrtc(), nav(), canvasFp(), webgl(), audio(), storage()]);
+  const fj = await fpjs();
 
   const N = 'Network & IP', SV = 'Server sees';
   const ip = srv.ip || '(unknown)';
@@ -464,15 +483,17 @@ async function main() {
   if (g?.security && (g.security.vpn || g.security.proxy || g.security.tor)) flag('warn', 'Your IP is listed as VPN/proxy/Tor. Some checkouts will block or challenge it.');
 
   // ---------- IDs ----------
-  const stable = {}; for (const s of Object.keys(D)) if (!VOLATILE.has(s)) for (const [k, v] of Object.entries(D[s])) { if (/Visited|Date\.toString|toLocaleString|Window position|Window inner|Window outer|Window has focus|Visibility|Storage quota|Timer resolution|Letterboxing/.test(k)) continue; stable[s + '.' + k] = v; }
+  const stable = {}; for (const s of Object.keys(D)) if (!VOLATILE.has(s) && !s.startsWith('FingerprintJS')) for (const [k, v] of Object.entries(D[s])) { if (/Visited|Date\.toString|toLocaleString|Window position|Window inner|Window outer|Window has focus|Visibility|Storage quota|Timer resolution|Letterboxing/.test(k)) continue; stable[s + '.' + k] = v; }
   const fpB = await sha(JSON.stringify(stable));
   const devParts = { screen: screen.width + 'x' + screen.height + 'x' + screen.colorDepth, avail: screen.availWidth + 'x' + screen.availHeight, dpr: devicePixelRatio, cores: navigator.hardwareConcurrency, timezone: tz, gpu: gpu || 'n/a', fonts: fontList.join(',') };
   const fpD = await sha(JSON.stringify(devParts));
   document.getElementById('fpBrowser').textContent = short(fpB);
   document.getElementById('fpDevice').textContent = short(fpD);
   document.getElementById('sumIp').textContent = ip;
+  document.getElementById('fpJs').textContent = fj ? fj.visitorId : 'blocked';
+  if (fj) document.getElementById('fpJsS').textContent = 'Confidence ' + fj.confidence.score + '. Sova links accounts that share this ID. Restart this browser and reload: same ID = Sova would link your visits.';
   document.getElementById('sumGeo').textContent = g && g.success !== false ? `${[g.city, g.region, g.country_code].filter(Boolean).join(', ')} · ${g.connection?.isp || ''} · AS${g.connection?.asn || '?'}` : '';
-  REPORT = { meta: { tool: 'fsmaster.com/leakcheck', at: new Date().toISOString(), browserFingerprint: fpB, deviceFingerprint: fpD, deviceParts: devParts }, data: D };
+  REPORT = { meta: { tool: 'fsmaster.com/leakcheck', at: new Date().toISOString(), fpjsVisitorId: fj ? fj.visitorId : null, browserFingerprint: fpB, deviceFingerprint: fpD, deviceParts: devParts }, data: D };
   render();
   st.textContent = 'done · ' + Object.values(D).reduce((a, s) => a + Object.keys(s).length, 0) + ' data points';
 }
@@ -493,7 +514,8 @@ $('cmpRun').onclick = () => {
   const devRows = Object.keys(dp).map(k => `<tr><td class="k">${esc(k)}</td><td class="v ${dp[k] == op[k] ? 'same' : 'diff'}">${dp[k] == op[k] ? 'SAME' : 'different'} — ${cell(String(dp[k]).slice(0, 120))} ${dp[k] == op[k] ? '' : ' vs ' + cell(String(op[k] ?? '—').slice(0, 120))}</td></tr>`).join('');
   const linked = Object.keys(dp).filter(k => dp[k] == op[k]).length;
   $('cmpOut').innerHTML = `
-    <p><b>Browser fingerprint:</b> <span class="${o.meta?.browserFingerprint === REPORT.meta.browserFingerprint ? 'same' : 'diff'}">${o.meta?.browserFingerprint === REPORT.meta.browserFingerprint ? 'IDENTICAL' : 'different'}</span> ·
+    <p><b>FingerprintJS visitorId (Sova):</b> <span class="${o.meta?.fpjsVisitorId && o.meta.fpjsVisitorId === REPORT.meta.fpjsVisitorId ? 'diff' : 'same'}">${o.meta?.fpjsVisitorId && o.meta.fpjsVisitorId === REPORT.meta.fpjsVisitorId ? 'IDENTICAL — Sova would link these two' : 'different — Sova would NOT link these two'}</span><br>
+       <b>Browser fingerprint:</b> <span class="${o.meta?.browserFingerprint === REPORT.meta.browserFingerprint ? 'same' : 'diff'}">${o.meta?.browserFingerprint === REPORT.meta.browserFingerprint ? 'IDENTICAL' : 'different'}</span> ·
        <b>Device fingerprint:</b> <span class="${o.meta?.deviceFingerprint === REPORT.meta.deviceFingerprint ? 'same' : 'diff'}">${o.meta?.deviceFingerprint === REPORT.meta.deviceFingerprint ? 'IDENTICAL — these two can be linked' : 'different'}</span> ·
        ${same} values same, ${diff.length} different · ${linked}/${Object.keys(dp).length} device signals match</p>
     <div class="card"><h2>Cross-browser device signals</h2><table>${devRows}</table></div>
