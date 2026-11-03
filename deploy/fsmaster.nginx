@@ -14,9 +14,6 @@ server {
     # LeakCheck (github.com/fsmaster/leakcheck, snippet installed by its deploy.sh)
     include snippets/leakcheck.conf;
 
-    # Distill Lab (github.com/fsmaster/distill-lab, snippet installed by its deploy/deploy.sh)
-    include snippets/distill.conf;
-
     # Long cache for static assets
     location ~* \.(?:jpg|jpeg|png|gif|webp|svg|ico|css|js|woff2?)$ {
         expires 30d;
